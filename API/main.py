@@ -1,9 +1,11 @@
 from fastapi import FastAPI
-from routers import penguins
+from router import pinguins, principal
 
 
 app = FastAPI()
 
+app.include_router(pinguins.router)
+app.include_router(principal.router)
 
 @app.get("/")
 def default():
