@@ -7,20 +7,23 @@ Also created a Streamlit dashboard to visualize the data obtained from the API. 
 
 Before creating the API and dashboard, i cleaned and formatted the penguin dataset, eliminating penguins with missing values in multiple columns. Also used the available data to determine the sex of some of the penguins that had missing values in the sex column.
 
-!{https://github.com/Santiagoestremadoyro/mid-bootcamp-work/blob/streamlit/img/NA_colums.png}
+!{}
 
-!{https://github.com/Santiagoestremadoyro/mid-bootcamp-work/blob/streamlit/img/sexo.png}
+!{}
 
 ## Dataset
 I used the Palmer Archipelago Penguins dataset, which contained information on the body size, sex, and survival of Adélie, Chinstrap, and Gentoo penguins.
 
 ## Data Preparation
 I cleaned and formatted the dataset by eliminating penguins with missing values in multiple columns using a query: 
-```bash
+```python
    {$or: [{culmen_length_mm: "NA"}, {culmen_depth_mm: "NA"}, {flipper_length_mm: "NA"}, {body_mass_g: "NA"}, {sex: "NA"}] }
 ```
 
 I also determined the sex of some of the penguins using the available data.
+
+🐧 Males are just bigger. They weigh from 4 to 5 kg and measure 45 cm. They have longer and broader beaks and a more pronounced forehead.
+
 
 ## Database
 I stored the cleaned and formatted dataset in a MongoDB database, organized in collections based on the penguin species.
