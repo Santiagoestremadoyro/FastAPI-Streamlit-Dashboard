@@ -7,9 +7,9 @@ Also created a Streamlit dashboard to visualize the data obtained from the API. 
 
 Before creating the API and dashboard, i cleaned and formatted the penguin dataset, eliminating penguins with missing values in multiple columns. Also used the available data to determine the sex of some of the penguins that had missing values in the sex column.
 
-!{}
+!{https://github.com/Santiagoestremadoyro/mid-bootcamp-work/blob/main/img/NA_colums.png?raw=true}
 
-!{}
+!{https://github.com/Santiagoestremadoyro/mid-bootcamp-work/blob/main/img/sexo.png?raw=true}
 
 ## Dataset
 I used the Palmer Archipelago Penguins dataset, which contained information on the body size, sex, and survival of Adélie, Chinstrap, and Gentoo penguins.
