@@ -8,11 +8,33 @@ router = APIRouter()
 def res(result):
     return loads(json_util.dumps(result))
 
-#test para llamar a todos los pinguinos
+
 @router.get("/all/pinguins")
 def get_pinguins():
-    result = db["pinguinos"].find({})
-    return loads(json_util.dumps(result))
+    result = db["pinguinos"].aggregate([
+        {"$group": {"_id": "$sex", "count": {"$sum": 1}}}
+    ])
+    return res(result)
+
+@router.get("/all/pinguins/specie")
+def get_pinguins_s():
+    result = db["pinguinos"].aggregate([
+        {"$group": {"_id": "$species", "count": {"$sum": 1}}}
+    ])
+    return res(result)
+
+@router.get("/all/pinguins/islan")
+def get_pinguins_i():
+    result = db["pinguinos"].aggregate([
+        {"$group": {"_id": "$island", "count": {"$sum": 1}}}
+    ])
+    return res(result)
+
+#test para llamar a todos los pinguinos
+#@router.get("/all/pinguins")
+#def get_pinguins():
+#    result = db["pinguinos"].find({})
+#    return loads(json_util.dumps(result))
 
 
 #separar pinguinos por sexo
