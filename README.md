@@ -26,7 +26,7 @@ I also determined the sex of some of the penguins using the available data.
 
 
 ## Database
-I stored the cleaned and formatted dataset in a MongoDB database, organized in collections based on the penguin species.
+I stored the cleaned and formatted dataset in a MongoDB database, organized in collections based on the penguin species, sex and island where they come from.
 
 ## API
 I designed an API that used different endpoints to serve data from the database. I used various parameters to allow for different types of requests, such as filtering by species, sex, or islan.
