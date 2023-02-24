@@ -5,8 +5,9 @@ def create_bar_chart(data, x, y):
     for item in data:
         key = item[x]
         value = item[y]
-        if key in chart_data:
-            chart_data[key] += value
-        else:
-            chart_data[key] = value
+        if key == "FEMALE" or "MALE":
+            if key in chart_data:
+                chart_data[key] += value
+            else:
+                chart_data[key] = value
     return st.bar_chart(chart_data)
