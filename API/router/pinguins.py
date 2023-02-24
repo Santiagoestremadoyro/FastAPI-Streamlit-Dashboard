@@ -12,6 +12,7 @@ def res(result):
 @router.get("/all/pinguins")
 def get_pinguins():
     result = db["pinguinos"].aggregate([
+        {"$match":{"sex": {"$ne":None}}},
         {"$group": {"_id": "$sex", "count": {"$sum": 1}}}
     ])
     return res(result)
