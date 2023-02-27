@@ -6,7 +6,7 @@ st.markdown("<h1 style='text-decoration: underline;'>Palmer Archipelago (Antarct
 
 st.image('./data/pinguinos.jpg')
 
-st.sidebar.success("select an option")
+st.sidebar.success("select an option above")
 
 selectbox = st.selectbox("What would you like to see?", ["by sex", "by islands", "by species"])
 data = get_island()

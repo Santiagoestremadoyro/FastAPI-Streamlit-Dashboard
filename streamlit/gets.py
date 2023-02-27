@@ -10,3 +10,6 @@ def get_island():
 
 def get_species():
     return requests.get(url+"/all/pinguins/specie").json()
+
+def get_id_follow_up(id, family):
+    return requests.get(url+f"/id/{id}/{family}").json

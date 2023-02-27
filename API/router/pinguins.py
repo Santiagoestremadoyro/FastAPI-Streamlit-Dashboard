@@ -20,6 +20,7 @@ def get_pinguins():
 @router.get("/all/pinguins/specie")
 def get_pinguins_s():
     result = db["pinguinos"].aggregate([
+        {"$match":{"species": {"$ne":None}}},
         {"$group": {"_id": "$species", "count": {"$sum": 1}}}
     ])
     return res(result)
@@ -27,15 +28,30 @@ def get_pinguins_s():
 @router.get("/all/pinguins/islan")
 def get_pinguins_i():
     result = db["pinguinos"].aggregate([
+        {"$match":{"island": {"$ne":None}}},
         {"$group": {"_id": "$island", "count": {"$sum": 1}}}
     ])
     return res(result)
 
-#test para llamar a todos los pinguinos
-#@router.get("/all/pinguins")
-#def get_pinguins():
-#    result = db["pinguinos"].find({})
-#    return loads(json_util.dumps(result))
+
+@router.get("/id/{number}/{group}")
+def get_data(number, group=0):
+    group = int(group)
+    project = {"_id":0}
+    filter = {"number": int(number)}
+    result = list(db["penguin"].find(filter, project)[group:(group+1)])
+    if len(result)==0:
+        return {"the id of this penguin is wrong or does not exit"}
+    return res(result)
+
+@router.get("/info/{number}/{group}")
+def stats(number, group=0):
+    group = int(group)
+    project = {"Culmen Length (mm)":1, "Culmen Depth (mm)":1, "Flipper Length (mm)":1, "Body Mass (g)":1, "_id":0}
+    filter = {"number": int(number)}
+    results = list(db["penguin"].find(filter, project)[group:(group+1)])
+    return res(results)
+
 
 
 #separar pinguinos por sexo
