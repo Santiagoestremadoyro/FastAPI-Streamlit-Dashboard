@@ -2,6 +2,8 @@ from fastapi import APIRouter
 from mongo.conexion import db
 from bson import json_util
 from json import loads
+import plotly.express as px
+from fastapi.responses import JSONResponse
 
 router = APIRouter()
 
@@ -15,6 +17,15 @@ def get_pinguins():
         {"$match":{"sex": {"$ne":None}}},
         {"$group": {"_id": "$sex", "count": {"$sum": 1}}}
     ])
+    return res(result)
+
+@router.get("/penguins/{penguin_id}")
+def get_penguin_by_id(penguin_id: str):
+    project = {"_id": 0, "species": 1, "island": 1, "culmen_length_mm": 1, "culmen_depth_mm": 1, "flipper_length_mm": 1, "body_mass_g": 1, "sex": 1}
+    filter = {"_id":ObjectId('penguin_id')}
+    result = db["penguins"].find_one(filter, project)
+    if not result:
+        return {"error": "Penguin not found"}
     return res(result)
 
 @router.get("/all/pinguins/specie")
@@ -34,25 +45,14 @@ def get_pinguins_i():
     return res(result)
 
 
-@router.get("/id/{number}/{group}")
-def get_data(number, group=0):
-    group = int(group)
-    project = {"_id":0}
-    filter = {"number": int(number)}
-    result = list(db["penguin"].find(filter, project)[group:(group+1)])
-    if len(result)==0:
-        return {"the id of this penguin is wrong or does not exit"}
+
+
+ 
+
+@router.get("/all/penguins/info")
+def get_all_penguins():
+    result = list(db["penguins"].find({}, {"_id": 0}))
     return res(result)
-
-@router.get("/info/{number}/{group}")
-def stats(number, group=0):
-    group = int(group)
-    project = {"Culmen Length (mm)":1, "Culmen Depth (mm)":1, "Flipper Length (mm)":1, "Body Mass (g)":1, "_id":0}
-    filter = {"number": int(number)}
-    results = list(db["penguin"].find(filter, project)[group:(group+1)])
-    return res(results)
-
-
 
 #separar pinguinos por sexo
 @router.get("/pinguins/sex/{sex}")
@@ -78,3 +78,4 @@ def penguins_by_island(island: str):
     for penguin in db["pinguinos"].find({"island": island}):
         result.append(penguin)
     return res(result)
+
