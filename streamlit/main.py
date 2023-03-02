@@ -2,33 +2,9 @@ import streamlit as st
 from gets import get_sex, get_island, get_species
 from graph import create_bar_chart
 import io
-import requests
 import pdfkit
 
-def generate_pdf(data, x, y):
-    buffer = io.BytesIO()
-    p = canvas.Canvas(buffer)
 
-    chart = create_bar_chart(data, x, y)
-    chart._render(p)
-
-    p.showPage()
-    p.save()
-
-    pdf_bytes = buffer.getvalue()
-    buffer.close()
-
-    return pdf_bytes
-
-def download_report(data, x, y):
-    pdf_bytes = generate_pdf(data, x, y)
-
-    st.download_button(
-        label="Download Report",
-        data=pdf_bytes,
-        file_name="report.pdf",
-        mime="application/pdf"
-    )
 
 st.markdown("<h1 style='text-decoration: underline;'>Palmer Archipelago (Antarctica)</h1>", unsafe_allow_html=True)
 
@@ -37,16 +13,6 @@ st.image('./data/pinguinos.jpg')
 st.sidebar.success("Select an option above 👆🏼 ")
 
 selectbox = st.selectbox("What would you like to see?", ["by sex", "by islands", "by species"])
-
-
-
-
-
-
-
-
-
-
 
 
 def create_pdf_report(selected_option):
@@ -74,11 +40,24 @@ def create_pdf_report(selected_option):
     return "report.pdf"
 
 
+
+
+
+
+
+
+
 if st.button("Download PDF report"):
     file_path = create_pdf_report(selectbox)
     with open(file_path, "rb") as f:
         st.download_button("Download PDF", f.read(), "report.pdf", "application/pdf")
 
+
+
+
+path_wkhtmltopdf = '/Program Files/wkhtmltopdf' 
+config = pdfkit.configuration(wkhtmltopdf=path_wkhtmltopdf)
+pdfkit.from_string(report_html, 'report.pdf', configuration=config)
 
 
 

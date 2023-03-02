@@ -1,5 +1,6 @@
 import streamlit as st
 from graph import generate_graph
+from gets import get_all_info, get_info
 
 
 
@@ -9,8 +10,10 @@ st.image('./data/background.png')
 
 penguin_id = st.text_input("Enter the ID of the penguin")
 
+
+
 if st.button("Generate Graph"):
-  penguin_data = get_all_info(penguin_id)
+  penguin_data = get_info(penguin_id)
   if "ERROR" in penguin_data:
     st.write(penguin_data["ERROR"])
   else:

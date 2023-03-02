@@ -14,6 +14,10 @@ def get_species():
 def get_id_follow_up(id, group):
     return requests.get(url+f"/id/{id}/{group}").json()
 
-def get_info(number, group):
-    return requests.get(url+f"/info/{number}/{group}").json()
+def get_info(penguin_id):
+    return requests.get(url+f"/pinguins/information/{penguin_id}").json()
+
+def get_all_info(penguin_id):
+    return requests.get(url+f"/information/{penguin_id}").json()
+
 

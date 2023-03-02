@@ -22,20 +22,20 @@ def get_pinguins():
 
 @router.get("/information/{penguin_id}")
 def get_penguin_by_id(penguin_id):
-    #project = {"_id": 0}
-    #filter = {"_id":ObjectId('penguin_id')}
-    result= db.penguins.find_one({"_id": ObjectId(penguin_id)})
-    #if not result:
-    #    return {"error": "Penguin not found"}
+
+    result= db.pinguinos.find_one({"_id": ObjectId(penguin_id)})
+    if not result:
+        return {"error": "Penguin not found"}
     return res(result)
 
 
-@router.get("/pinguins/information/{_id}")
+@router.get("/pinguins/information/{penguin_id}")
 def penguins_by_sex(_id):
     result = []
-    for penguin in db["pinguinos"].find({"_id":_id}):
+    for penguin in db["pinguinos"].find({"_id": ObjectId(_id)}):
         result.append(penguin)
     return res(result)
+
 
 
 
