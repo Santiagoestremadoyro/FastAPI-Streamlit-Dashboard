@@ -4,6 +4,7 @@ from bson import json_util
 from json import loads
 import plotly.express as px
 from fastapi.responses import JSONResponse
+from bson.objectid import ObjectId
 
 router = APIRouter()
 
@@ -19,14 +20,26 @@ def get_pinguins():
     ])
     return res(result)
 
-@router.get("/penguins/{penguin_id}")
-def get_penguin_by_id(penguin_id: str):
-    project = {"_id": 0, "species": 1, "island": 1, "culmen_length_mm": 1, "culmen_depth_mm": 1, "flipper_length_mm": 1, "body_mass_g": 1, "sex": 1}
-    filter = {"_id":ObjectId('penguin_id')}
-    result = db["penguins"].find_one(filter, project)
-    if not result:
-        return {"error": "Penguin not found"}
+@router.get("/information/{penguin_id}")
+def get_penguin_by_id(penguin_id):
+    #project = {"_id": 0}
+    #filter = {"_id":ObjectId('penguin_id')}
+    result= db.penguins.find_one({"_id": ObjectId(penguin_id)})
+    #if not result:
+    #    return {"error": "Penguin not found"}
     return res(result)
+
+
+@router.get("/pinguins/information/{_id}")
+def penguins_by_sex(_id):
+    result = []
+    for penguin in db["pinguinos"].find({"_id":_id}):
+        result.append(penguin)
+    return res(result)
+
+
+
+
 
 @router.get("/all/pinguins/specie")
 def get_pinguins_s():

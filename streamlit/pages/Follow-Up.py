@@ -1,6 +1,6 @@
 import streamlit as st
 from graph import generate_graph
-from gets import get_all_info
+
 
 
 st.markdown("<h1 style='text-decoration: underline;'>Penguin follow-up according to ID </h1>", unsafe_allow_html=True)
