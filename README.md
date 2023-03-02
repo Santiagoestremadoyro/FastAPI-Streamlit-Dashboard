@@ -41,7 +41,7 @@ I designed an API that used different endpoints to serve data from the database.
 I created a Streamlit dashboard that visualized the data obtained from the API. The dashboard included interactive visualizations that allowed for user interaction, such as filtering by species or sex. We used different streamlit widgets to allow for user interaction with the visualizations.
 
 <p align="center">
-  <img src="https://github.com/Santiagoestremadoyro/mid-bootcamp-work/blob/main/img/sexo.png?raw=true" width="3000">
+  <img src="https://github.com/Santiagoestremadoyro/mid-bootcamp-work/blob/main/img/dashboard.png?raw=true" width="3000">
 </p>
 
 
