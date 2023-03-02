@@ -9,11 +9,13 @@ Before creating the API and dashboard, i cleaned and formatted the penguin datas
 
 nueva imagen
 <p align="center">
-  <img src="https://github.com/Santiagoestremadoyro/mid-bootcamp-work/blob/main/img/NA_colums.png?raw=true" width="400">
+  <img src="https://github.com/Santiagoestremadoyro/mid-bootcamp-work/blob/main/img/NA_colums.png?raw=true" width="3000">
 </p>
-#![NA_colum](https://github.com/Santiagoestremadoyro/mid-bootcamp-work/blob/main/img/NA_colums.png?raw=true)
 
-![NA_sex](https://github.com/Santiagoestremadoyro/mid-bootcamp-work/blob/main/img/sexo.png?raw=true)
+<p align="center">
+  <img src="https://github.com/Santiagoestremadoyro/mid-bootcamp-work/blob/main/img/sexo.png?raw=true" width="3000">
+</p>
+
 
 ## Dataset
 I used the Palmer Archipelago Penguins dataset, which contained information on the body size, sex, and survival of Adélie, Chinstrap, and Gentoo penguins.
