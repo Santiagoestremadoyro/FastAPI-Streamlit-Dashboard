@@ -22,19 +22,31 @@ def get_pinguins():
 
 @router.get("/information/{penguin_id}")
 def get_penguin_by_id(penguin_id):
-
-    result= db.pinguinos.find_one({"_id": ObjectId(penguin_id)})
+    result= db.pinguinoss.find_one({"Individual ID": penguin_id})
     if not result:
         return {"error": "Penguin not found"}
     return res(result)
 
 
-@router.get("/pinguins/information/{penguin_id}")
-def penguins_by_sex(_id):
-    result = []
-    for penguin in db["pinguinos"].find({"_id": ObjectId(_id)}):
-        result.append(penguin)
+
+@router.get("/info/graph/{ind_id}")
+def get_info_graph(ind_id):
+    result = db["pinguinoss"].aggregate([
+        {"$match":{"Individual ID": ind_id}},
+        {"$group":{"_id": "$Individual ID"}}
+
+    ])
     return res(result)
+
+
+
+@router.get("/information/2/{ind_id}")
+def get_penguin_by_id(ind_id):
+    projection = {"_id": 0, "Culmen Length (mm)": 1, "Culmen Depth (mm)": 1, "Body Mass (g)": 1, "Flipper Length (mm)": 1}
+    result = db.pinguinoss.find({"Individual ID": ind_id}, projection)
+    
+    return res(result)
+
 
 
 
@@ -91,4 +103,6 @@ def penguins_by_island(island: str):
     for penguin in db["pinguinos"].find({"island": island}):
         result.append(penguin)
     return res(result)
+
+
 
