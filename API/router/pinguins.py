@@ -43,7 +43,7 @@ def get_info_graph(ind_id):
 @router.get("/information/2/{ind_id}")
 def get_penguin_by_id(ind_id):
     projection = {"_id": 0, "Culmen Length (mm)": 1, "Culmen Depth (mm)": 1, "Body Mass (g)": 1, "Flipper Length (mm)": 1}
-    result = db.pinguinoss.find({"Individual ID": ind_id}, projection)
+    result = db.pinguinoss.find_one({"Individual ID": ind_id}, projection)
     
     return res(result)
 
