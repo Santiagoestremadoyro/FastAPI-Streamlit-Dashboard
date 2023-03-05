@@ -26,8 +26,12 @@ st.markdown(
 st.markdown("***")
 
 def save_credentials(username, password):
-    db.credentials.insert_one({"username": username, "password": password})
-    st.success("Credentials saved!")
+    existing_user = db.credentials.find_one({"username":username})
+    if existing_user:
+        st.warning("Username/password already exists. Please choose another username.")
+    else:
+        db.credentials.insert_one({"username": username, "password": password})
+        st.success("Credentials saved!")
 
 with st.form(key='my_form'):
    username = st.text_input('Username')

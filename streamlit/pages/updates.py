@@ -20,6 +20,13 @@ st.markdown(
         '''
     )
 
+st.subheader("Flipper and bill length")
+st.image('./data/flipper-bill.png')
+
+st.subheader("Bill Length")
+st.image('./data/bill-length.png')
+
+
 
 st.header(":mailbox: Get In Touch With Me!")
 st.markdown(

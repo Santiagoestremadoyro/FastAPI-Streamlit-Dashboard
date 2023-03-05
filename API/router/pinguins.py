@@ -12,6 +12,7 @@ def res(result):
     return loads(json_util.dumps(result))
 
 
+
 @router.get("/all/pinguins")
 def get_pinguins():
     result = db["pinguinos"].aggregate([
@@ -79,16 +80,18 @@ def get_pinguins_i():
 
  
 
-@router.get("/all/penguins/info")
-def get_all_penguins():
-    result = list(db["penguins"].find({}, {"_id": 0}))
+@router.get("/information/2")
+def get_penguin_by_id():
+    projection = {"_id": 0, "Species":1, "Flipper Length (mm)":1, "Body Mass (g)":1}
+    result = db.pinguinoss.find({}, projection)
+    
     return res(result)
 
 #separar pinguinos por sexo
-@router.get("/pinguins/sex/{sex}")
-def penguins_by_sex(sex: str):
+@router.get("/pinguins/sex")
+def penguins_by_sex():
     result = []
-    for penguin in db["pinguinos"].find({"sex": sex}):
+    for penguin in db["pinguinos"].find({}):
         result.append(penguin)
     return res(result)
 

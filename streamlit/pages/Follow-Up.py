@@ -6,11 +6,22 @@ import plotly.express as px
 import streamlit.components.v1 as components
 
 
+
+
 st.markdown("<h1 style='text-decoration: underline;'>Penguin follow-up according to ID </h1>", unsafe_allow_html=True)
 
 st.image('./data/culmen_depth.png')
 
 st.sidebar.success("Select an option above 👆🏼 ")
+
+st.subheader("Id follow-UP")
+
+st.markdown(
+        '''
+
+Place the "Individual ID"(N6A1) of the penguin you want to acquire information for more in-depth monitoring.
+     '''
+    )
 
 ind_id = st.text_input("Enter the ID of the penguin")
 
@@ -23,6 +34,15 @@ if ind_id:
 
 
 st.markdown("***")
+
+st.subheader("Population")
+
+st.markdown(
+        '''
+
+Know the population of these wonderful creatures depending on the sex, species or island of origin.
+     '''
+    )
 
 selectbox = st.selectbox("What would you like to see?", ["by sex", "by islands", "by species"])
 
@@ -37,7 +57,6 @@ elif selectbox == "by islands":
 elif selectbox == "by species":
     data = get_species()
     create_bar_chart(data, "_id", "count")
- 
  
 
 
