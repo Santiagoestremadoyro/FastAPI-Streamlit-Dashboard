@@ -3,7 +3,7 @@
 # Description
 In this project, i created an API to serve data from a penguin dataset that was enriched with data obtained from another API. We used webscraping to extract additional information and stored it in a database. I designed the API with multiple endpoints that used various parameters to allow for different types of requests.
 
-Also created a Streamlit dashboard to visualize the data obtained from the API. The dashboard allowed for interactive visualizations, and i used different streamlit widgets to allow for user interaction with the visualizations.
+Also created a Streamlit dashboard to visualize the data obtained from the API. The dashboard allowed for interactive visualizations, and i used different streamlit widgets to allow for user interaction with the visualizations. I have also been able to add functionalities to be able to create a user and add it to the database, for later verification so that users are not repeated. Also in the same dashboard you can have contact via email for the user.
 
 Before creating the API and dashboard, i cleaned and formatted the penguin dataset, eliminating penguins with missing values in multiple columns. Also used the available data to determine the sex of some of the penguins that had missing values in the sex column.
 
@@ -18,7 +18,8 @@ Before creating the API and dashboard, i cleaned and formatted the penguin datas
 
 
 ## Dataset
-I used the Palmer Archipelago Penguins dataset, which contained information on the body size, sex, and survival of Adélie, Chinstrap, and Gentoo penguins.
+I used the Palmer Archipelago Penguins dataset, which contained information on the body size, sex, survival, etc of Adélie, Chinstrap, and Gentoo penguins.
+The database provides a lot of data about each of the penguins, which allows us to create features in the dashboard that allow us to do a more in-depth monitoring of each of these subjects.
 
 ## Data Preparation
 I cleaned and formatted the dataset by eliminating penguins with missing values in multiple columns using a query: 
@@ -41,7 +42,7 @@ I designed an API that used different endpoints to serve data from the database.
 I created a Streamlit dashboard that visualized the data obtained from the API. The dashboard included interactive visualizations that allowed for user interaction, such as filtering by species or sex. We used different streamlit widgets to allow for user interaction with the visualizations.
 
 <p align="center">
-  <img src="https://github.com/Santiagoestremadoyro/mid-bootcamp-work/blob/main/img/dashboard.png?raw=true" width="3000">
+  <img src="https://github.com/Santiagoestremadoyro/mid-bootcamp-work/blob/main/img/dashboard-2.png?raw=true" width="3000">
 </p>
 
 
