@@ -13,14 +13,15 @@ st.sidebar.success("Select an option above 👆🏼 ")
 
 st.markdown("<h1 style='text-decoration;'>Sign up to our community!</h1>", unsafe_allow_html=True)
 
+
+
+st.image('./data/logo.png')
+
 st.markdown(
         '''
                  Create an account with us and be part of our community!
         '''
     )
-
-st.image('./data/logo.png')
-
 
 st.markdown("***")
 

@@ -1,11 +1,8 @@
 import streamlit as st
-from gets import get_sex, get_island, get_species
-from graph import create_bar_chart
 import io
-import pdfkit
 import pandas as pd
-import numpy as np
 import plotly.graph_objects as go
+from streamlit_option_menu import option_menu
 
 st.markdown("<h1 style='text-decoration: underline;'>Palmer Archipelago (Antarctica)</h1>", unsafe_allow_html=True)
 st.subheader("Discover the three types of species that inhabit this wonderful archipelago and their characteristics")
@@ -14,89 +11,159 @@ st.markdown("***")
 
 st.image('./data/palmer.png')
 
-st.sidebar.success("Select an option above 👆🏼 ")
 
-st.markdown("***")
+selected2 = option_menu(None, [ "Chinstrap", 'Gentoo', "Adelie"], 
+    icons=['body-text', 'body-text', "body-text"], 
+    menu_icon="cast", default_index=1, orientation="horizontal")
 
-selectbox = st.selectbox("What would you like to see?", ["by sex", "by islands", "by species"])
 
-st.markdown("***")
 
-if selectbox == "by sex":
-    data = get_sex()
-    graph = create_bar_chart(data, "_id", "count")
-elif selectbox == "by islands":
-    data = get_island()
-    create_bar_chart(data, "_id", "count")
-elif selectbox == "by species":
-    data = get_species()
-    create_bar_chart(data, "_id", "count")
 
-st.markdown("***")
+if selected2 == "Chinstrap":
+    st.markdown("***")
 
-st.markdown(
+    st.markdown(
         '''
                 # **Chinstrap Penguins!**
         '''
     )
 
-st.markdown("***")
+    st.markdown("***")
 
-st.markdown(
+    st.markdown(
         '''
-            Chinstrap penguins have an average height of 72 cm and a weight of 3-5 kg, however their weight can decrease to 3 kg based on the breeding cycle.
+            Instantly recognizable by the black band that gives them their name, chinstrap penguins are the most abundant penguin in the Antarctic, where they gather in massive breeding colonies.
 
-The flippers of adult chinstrap penguins are black with a white border: the inner sides of the flippers are white. The white face extends to behind the eyes, which are reddish brown; the chin and throat are also white, while the short beak they have is black. The strong legs are pink, also its short and flattened legs give it a characteristic style of waddling when walking. The chinstrap penguin's black and white plumage helps camouflage it in the water from predators such as seals. When the penguin is observed from above, the bird's black back blends into the dark-colored water of the seabed, likewise the bird's underside blends into the sun when viewed from the seabed.
+After spending the winter north of the sea ice, chinstraps return in late October or early November to their nest sites, usually with the same breeding partners. These colonies are on the rocky, ice-free coasts of the South Sandwich Islands, South Shetland Islands, and Antarctic continent.
+
+The sheer number of birds in the colonies is astounding. The largest colony, on the uninhabited South Sandwich island of Zavodovski, hosts some 1.2 million breeding pairs. Baily Head in the South Shetland Islands is home to more than 100,000 pairs.
+        '''
+)
+    st.subheader("Breeding and nesting")
+
+
+
+    st.markdown(
+        '''
+A female chinstrap typically will lay two eggs in a circular nest made from stones. The parents share egg-sitting duties, each spending several days on the nest before a shift change. After about 37 days, the chicks hatch. They spend another few weeks in the nest, then waddle into a crèche, where the fluffy, gray juveniles are cared for communally. At around two months old, they get their adult feathers and are able to head to sea.
+'''
+)   
+    
+    st.subheader("Threats")    
+
+    st.markdown(
+        '''
+In the water, where they feed primarily on krill, the penguins main predator is the leopard seal. On land, chinstraps face threats from skuas, giant petrels, and other birds that steal the penguins eggs and attack chicks, as well as a more unusual threat: volcanic activity. An ill-timed eruption in 2016 on Zavodovski Island covered much of the colony in ash as the birds were undergoing their annual molt. During molt, when they lose their waterproof feathers, they are land-locked and cant go in the sea until their feathers regrow.
+
+Chinstrap penguin numbers increased in the mid-20th century, attributed by some to the rebound of krill from centuries of seal and whale hunting. Today, some populations are declining, though not precipitously. Restrictions are in place to keep tourists from approaching breeding birds too closely.
         '''
 )
 
-st.image('./data/chinstrap_penguin.jpg')
+    st.image('./data/chinstrap_penguin.jpg')
 
-
-
-st.markdown(
-        '''
-                # **Gentoo Penguins!**
-        '''
-)
-
-st.markdown("***")
-
-st.markdown(
-        '''
-           The gentoo penguin is easily recognized by the wide, white stripe extending like a bonnet across the top of its head and its bright orange-red bill. It has pale whitish-pink, webbed feet and a fairly long tail the most prominent tail of all penguin species. Chicks have grey backs with white fronts. As the gentoo penguin waddles along on land, its tail sticks out behind, sweeping from side to side, hence the scientific name Pygoscelis, which means "rump-tailed. Gentoo penguins can reach a height of 51 to 90 cm (20 to 35 in), making them the third-largest species of penguin after the emperor penguin and the king penguin. Males have a maximum weight around 8.5 kg (19 lb) just before molting and a minimum weight of about 4.9 kg (11 lb) just before mating. For females, the maximum weight is 8.2 kg (18 lb) just before molting, but their weight drops to as little as 4.5 kg (9.9 lb) when guarding the chicks in the nest."
-        '''
-    )
-
-st.image('./data/gento_penguin.jpg')
-
-
-
-
-st.markdown(
+if selected2 == "Adelie":
+    st.markdown("***")
+    st.markdown(
         '''
                 # **Adelie Penguins!**
         '''
+    )
+
+    st.markdown("***")
+
+    st.markdown(
+        '''
+            Adélie penguins live on the Antarctic continent and on many small, surrounding coastal islands. They spend the winter offshore in the seas surrounding the Antarctic pack ice.
+            '''
+    )
+
+    st.subheader("Diet") 
+    st.markdown(
+        '''
+
+Adélies feed on tiny aquatic creatures, such as shrimp-like krill, but also eat fish and squid. They have been known to dive as deep as 575 feet in search of such quarry, though they usually hunt in far shallower waters less than half that depth.
+
+Like other penguins, Adélies are sleek and efficient swimmers. They may travel 185 miles round-trip to procure a meal.
+'''
+    )
+
+    st.subheader("Breeding")
+
+    st.markdown(
+        '''
+
+During the spring breeding season (in October), they take to the rocky Antarctic coastline where they live in large communities called colonies. These groups can include thousands of birds.
+
+Once on land, Adélies build nests and line them with small stones. Though they move with the famed “penguin waddle” they are capable walkers who can cover long overland distances. In early spring, before the vast sheets of ice break up, they may have to walk 31 miles from their onshore nests to reach open water.
+
+Male Adélie penguins help their mates rear the young and, without close inspection, the two sexes are nearly indistinguishable. They take turns sitting on a pair of eggs to keep them warm and safe from predators. When food is short, only one of the two chicks may survive. After about three weeks, parents are able to leave the chicks alone, though the offspring gather in groups for safety. Young penguins begin to swim on their own in about nine weeks.
+        '''
 )
 
-st.markdown("***")
+    st.image('./data/adelie_penguin.jpg')
 
-st.markdown(
+
+        
+if selected2 == 'Gentoo':
+    st.markdown("***")
+    st.markdown(
         '''
-            The Adélie penguin is a mid-sized bird, measuring 70-73 cm (28-29 in) in length and weighing 3.8 to 8.2 kg (8.4 to 18.1 lb). Although the sexes look the same, 
-females have shorter wings and beaks, and weigh significantly less. The adult is black on the head, throat and upperparts, with snowy white underparts. It has a conspicuous 
-white eye ring around a black iris. The beak is largely covered with black feathers, leaving only the tip exposed; this is primarily black, though it can show indistinct reddish-brown
-markings. The upper surface of the wing is black with a white trailing edge, while the underside is white with a narrow black leading edge and a small black tip. The legs and feet,
-which are mostly unfeathered, are pinkish.
+                # **Gentoo Penguins!**
         '''
-)
+    )
 
-st.image('./data/adelie_penguin.jpg')
+    st.markdown("***")
+
+    st.markdown(
+        '''
+           With flamboyant red-orange beaks, white-feather caps, and peach-colored feet, gentoo penguins stand out against their drab, rock-strewn Antarctic habitat.
+           '''
+    )
+
+    st.subheader("Habitat")
+    st.markdown(
+        '''
+
+These charismatic waddlers, who populate the Antarctic Peninsula and numerous islands around the frozen continent, are the penguin worlds third largest members, reaching a height of 30 inches and a weight of 12 pounds.
+
+Gentoos are partial to ice-free areas, including coastal plains, sheltered valleys, and cliffs. They gather in colonies of breeding pairs that can number from a few dozen to many thousands.
+    '''
+    )
+
+    st.subheader("Parenting")
+
+    st.markdown(
+        '''
+
+Gentoo parents, which often form long-lasting bonds, are highly nurturing. At breeding time, both parents will work to build a circular nest of stones, grass, moss, and feathers. The mother then deposits two spherical, white eggs, which both parents take turns incubating for more than a month. Hatchlings remain in the nest for up to a month, and the parents alternate foraging and brooding duties.
+     '''
+    )
+
+    st.subheader("Hunting")
+    st.markdown(
+        '''
+
+Adults spend the entire day hunting, usually close to shore, but occasionally ranging as far as 16 miles out. When pursuing prey, which includes fish, squid, and krill, they can remain below for up to seven minutes and dive as deep as 655 feet.
+        '''
+    )
+
+    st.image('./data/gento_penguin.jpg')
+    
 
 
 
-st.markdown("***")
 
 
 
 
+st.sidebar.success("Select an option above 👆🏼 ")
+
+st.markdown("*********")
+
+st.subheader("Small video where you can see these beautiful penguins in their natural habitat and interacting with each other")
+
+st.markdown("*********")
+
+video_file = open('./data/Manchots_adelie.ogv.240p.webm', 'rb')
+video_bytes = video_file.read()
+st.video(video_bytes)
