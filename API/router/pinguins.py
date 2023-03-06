@@ -78,14 +78,6 @@ def get_pinguins_i():
 
 
 
- 
-
-@router.get("/information/2")
-def get_penguin_by_id():
-    projection = {"_id": 0, "Species":1, "Flipper Length (mm)":1, "Body Mass (g)":1}
-    result = db.pinguinoss.find({}, projection)
-    
-    return res(result)
 
 #separar pinguinos por sexo
 @router.get("/pinguins/sex")
